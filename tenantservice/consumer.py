@@ -47,11 +47,11 @@ def handle_delete(data, message_id):
     tenant = Tenant.objects.raw({'email': email})
     if not list(tenant):
         logger.warn(F'Not found {data}')
-        return None, 404
+        return {}, 404
     else:
         tenant.delete()
         logger.warn(F'{data} deleted')
-        return None, 204
+        return {}, 204
 
 
 def handle_devices(data, message_id):
