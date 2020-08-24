@@ -11,8 +11,8 @@ def parse_message(message, allowed_types):
 
     command_type = message['command_type']
     if not any(command == command_type for command in allowed_types):
-        raise KafkaMessageException('command_type must be either "CREATE", "GET_ALL", "GET_BY_EMAIL", "DELETE".',
+        raise KafkaMessageException(F'command_type must be either {", ".join(allowed_types)} .',
                                     message_id)
     data = message['data']
     data = data if isinstance(data, dict) else json.loads(data)
-    return data, command_type, message_id
+    return data, command_type

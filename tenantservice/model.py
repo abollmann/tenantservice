@@ -6,6 +6,7 @@ class Tenant(MongoModel):
     first_name = fields.CharField(required=True)
     last_name = fields.CharField(required=True)
     email = fields.EmailField(required=True)
+    gender = fields.CharField(required=True)
     devices = fields.ListField(field=fields.ObjectIdField(required=False), required=False)
 
     def clean(self):

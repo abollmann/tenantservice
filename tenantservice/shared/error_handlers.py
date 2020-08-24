@@ -1,8 +1,6 @@
 from functools import wraps
 
 from tenantservice import logger
-from tenantservice.producer import produce_data
-from tenantservice.shared.exceptions import KafkaMessageException
 
 
 def handle_kafka_errors(f):
@@ -11,9 +9,6 @@ def handle_kafka_errors(f):
         try:
             return f(*args, **kwargs)
         except Exception as error:
-            if isinstance(error, KafkaMessageException):
-                produce_data(error.kafka_response)
-            logger.error(error)
+            logger.error(str(error))
 
     return decorated_function
-
