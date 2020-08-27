@@ -8,6 +8,7 @@ class Tenant(MongoModel):
     email = fields.EmailField(required=True)
     gender = fields.CharField(required=True)
     devices = fields.ListField(field=fields.ObjectIdField(required=False), default=[])
+    home_building = fields.CharField(required=True)
 
     def clean(self):
         if list(Tenant.objects.raw({'email': self.email})):

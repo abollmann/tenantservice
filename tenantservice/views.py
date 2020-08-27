@@ -23,7 +23,7 @@ def create():
     try:
         tenant = Tenant(**data).save().to_dict()
         logger.warn(F'Created {tenant}')
-        return encode_json(tenant), 200
+        return encode_json(tenant), 201
     except ValidationError as error:
         logger.error(error.message)
         return error.message, 422

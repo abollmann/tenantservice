@@ -35,7 +35,10 @@ def handle_distribute(data):
 
 
 def handle_remove(data):
-    pass
+    tenant_id = ObjectId(data['tenant_id'])
+    Tenant.objects.raw({'_id': tenant_id}).update(
+        {'$set': {'devices': []}})
+    logger.warn(F'Removed devices from {tenant_id}')
 
 
 ALLOWED_MESSAGE_TYPES = ['REMOVE_DEVICES', 'DISTRIBUTE_DEVICES']
