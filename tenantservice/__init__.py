@@ -22,3 +22,5 @@ connect(mongo_uri)
 
 # UTIL CONFIG
 json_encoder = ImprovedJSONEncoder()
+
+import tenantservice.views
